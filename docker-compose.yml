@@ -1,0 +1,20 @@
+.gradle
+.mvn
+.gradle
+.mvn
+.gradle
+.mvn
+version: "3.1"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: movie_rental
+    volumes:
+      - ./db/postgres:/var/lib/postgresql/data/
