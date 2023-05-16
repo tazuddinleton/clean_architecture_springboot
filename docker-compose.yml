@@ -1,9 +1,3 @@
-.gradle
-.mvn
-.gradle
-.mvn
-.gradle
-.mvn
 version: "3.1"
 
 services:
