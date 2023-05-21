@@ -1,8 +1,9 @@
-package com.example.movie_rental.adopters.db;
+package com.example.movie_rental.db.actor;
 import com.example.movie_rental.models.Actor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -27,6 +28,16 @@ public class ActorDataMapper {
                 .createdAt(model.getCreatedAt())
                 .updatedAt(model.getUpdatedAt())
                 .build();
+    }
+
+    public Optional<Actor> toOptionalDomainModel(ActorPersistenceModel model) {
+        return Optional.ofNullable(Actor.builder()
+                .id(model.getId())
+                .firstName(model.getFirstName())
+                .lastName(model.getLastName())
+                .createdAt(model.getCreatedAt())
+                .updatedAt(model.getUpdatedAt())
+                .build());
     }
 
     public List<Actor> toDomainModels(Iterable<ActorPersistenceModel> models) {

@@ -1,8 +1,8 @@
 package com.example.movie_rental.usecases;
 
 import com.example.movie_rental.models.Actor;
-import com.example.movie_rental.ports.ActorCreator;
-import com.example.movie_rental.ports.CreateActorRequest;
+import com.example.movie_rental.ports.actor.ActorCreator;
+import com.example.movie_rental.ports.actor.CreateActorRequest;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;

@@ -1,4 +1,4 @@
-package com.example.movie_rental.adopters.db;
+package com.example.movie_rental.db.actor;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

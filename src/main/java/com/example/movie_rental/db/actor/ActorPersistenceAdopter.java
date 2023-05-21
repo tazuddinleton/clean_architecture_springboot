@@ -1,13 +1,16 @@
-package com.example.movie_rental.adopters.db;
+package com.example.movie_rental.db.actor;
 
 import com.example.movie_rental.models.Actor;
-import com.example.movie_rental.ports.ActorCreator;
-import com.example.movie_rental.ports.ActorUpdater;
-import com.example.movie_rental.ports.ActorReader;
+import com.example.movie_rental.ports.actor.ActorCreator;
+import com.example.movie_rental.ports.actor.ActorUpdater;
+import com.example.movie_rental.ports.actor.ActorReader;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class ActorPersistenceAdopter implements ActorCreator, ActorUpdater, ActorReader {
@@ -28,16 +31,22 @@ public class ActorPersistenceAdopter implements ActorCreator, ActorUpdater, Acto
 
     @Override
     public List<Actor> readAll() {
-        return null;
+        return StreamSupport
+                .stream(this.repository.findAll().spliterator(), true)
+                .map(m -> this.mapper.toDomainModel(m))
+                .sorted(Comparator.comparingLong(Actor::getId))
+                .collect(Collectors.toList());
     }
 
     @Override
     public Optional<Actor> findOne(Long id) {
-        return Optional.empty();
+        var optionalActor = this.repository.findById(id);
+        return optionalActor.flatMap(m -> this.mapper.toOptionalDomainModel(m));
     }
 
     @Override
     public Actor update(Actor actor) {
-        return null;
+        var updated = this.repository.save(this.mapper.toPersistenceModel(actor));
+        return this.mapper.toDomainModel(updated);
     }
 }
