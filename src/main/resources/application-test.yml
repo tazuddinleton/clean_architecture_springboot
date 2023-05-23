@@ -1,7 +1,4 @@
 spring:
-  profiles:
-    active: test
-
   datasource:
     url: jdbc:postgresql://localhost:5432/movie_rental
     username: postgres
