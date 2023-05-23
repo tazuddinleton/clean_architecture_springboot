@@ -1,6 +1,6 @@
 package com.example.movie_rental.ports.actor;
 
-public interface CreateActorRequest {
+public interface CreateActorCommand {
     String firstName();
     String lastName();
 }

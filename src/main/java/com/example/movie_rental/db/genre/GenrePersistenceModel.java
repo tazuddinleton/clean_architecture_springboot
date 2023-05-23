@@ -1,4 +1,4 @@
-package com.example.movie_rental.db.actor;
+package com.example.movie_rental.db.genre;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,19 +7,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "actor")
-@Table(name = "actors", schema = "movie_rental")
-public class ActorPersistenceModel {
+@Entity(name = "genre")
+@Table(name = "genre", schema = "movie_rental")
+public class GenrePersistenceModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String name;
     private Date createdAt;
     private Date updatedAt;
 }

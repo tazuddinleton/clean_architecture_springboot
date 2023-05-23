@@ -1,9 +1,9 @@
-package com.example.movie_rental.usecases;
+package com.example.movie_rental.uc.actor;
 
 import com.example.movie_rental.models.Actor;
 import com.example.movie_rental.ports.actor.ActorReader;
 import com.example.movie_rental.ports.actor.ActorUpdater;
-import com.example.movie_rental.web.actors.UpdateActorCommand;
+import com.example.movie_rental.ports.actor.UpdateActorCommand;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -11,12 +11,12 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
-public class UpdateActor {
+public class UpdateActorUseCase {
 
     ActorUpdater updater;
     ActorReader reader;
 
-    public UpdateActor(ActorUpdater updater, ActorReader reader) {
+    public UpdateActorUseCase(ActorUpdater updater, ActorReader reader) {
         this.updater = updater;
         this.reader = reader;
     }

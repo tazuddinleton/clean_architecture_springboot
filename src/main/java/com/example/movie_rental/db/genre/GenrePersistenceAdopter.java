@@ -1,9 +1,9 @@
-package com.example.movie_rental.db.actor;
+package com.example.movie_rental.db.genre;
 
-import com.example.movie_rental.models.Actor;
-import com.example.movie_rental.ports.actor.ActorCreator;
-import com.example.movie_rental.ports.actor.ActorReader;
-import com.example.movie_rental.ports.actor.ActorUpdater;
+import com.example.movie_rental.models.Genre;
+import com.example.movie_rental.ports.genre.GenreCreator;
+import com.example.movie_rental.ports.genre.GenreReader;
+import com.example.movie_rental.ports.genre.GenreUpdater;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -13,40 +13,40 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-public class ActorPersistenceAdopter implements ActorCreator, ActorUpdater, ActorReader {
-    ActorRepository repository;
-    ActorDataMapper mapper;
+public class GenrePersistenceAdopter implements GenreCreator, GenreUpdater, GenreReader {
+    GenreRepository repository;
+    GenreDataMapper mapper;
 
-    public ActorPersistenceAdopter(ActorRepository repository, ActorDataMapper mapper) {
+    public GenrePersistenceAdopter(GenreRepository repository, GenreDataMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
 
     @Override
-    public Actor create(Actor actor) {
-        var model = mapper.toPersistenceModel(actor);
+    public Genre create(Genre genre) {
+        var model = mapper.toPersistenceModel(genre);
         var savedModel = this.repository.save(model);
         return this.mapper.toDomainModel(savedModel);
     }
 
     @Override
-    public List<Actor> readAll() {
+    public List<Genre> readAll() {
         return StreamSupport
                 .stream(this.repository.findAll().spliterator(), true)
                 .map(m -> this.mapper.toDomainModel(m))
-                .sorted(Comparator.comparingLong(Actor::getId))
+                .sorted(Comparator.comparingLong(Genre::getId))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Optional<Actor> findOne(Long id) {
+    public Optional<Genre> findOne(Long id) {
         var optionalActor = this.repository.findById(id);
         return optionalActor.flatMap(m -> this.mapper.toOptionalDomainModel(m));
     }
 
     @Override
-    public Actor update(Actor actor) {
-        var updated = this.repository.save(this.mapper.toPersistenceModel(actor));
+    public Genre update(Genre genre) {
+        var updated = this.repository.save(this.mapper.toPersistenceModel(genre));
         return this.mapper.toDomainModel(updated);
     }
 }

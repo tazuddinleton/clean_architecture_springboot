@@ -1,4 +1,4 @@
-package com.example.movie_rental.usecases;
+package com.example.movie_rental.uc.actor;
 
 import com.example.movie_rental.models.Actor;
 import com.example.movie_rental.ports.actor.ActorReader;
@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ReadActor {
+public class ReadActorUseCase {
     ActorReader reader;
-    public ReadActor(ActorReader reader) {
+    public ReadActorUseCase(ActorReader reader) {
         this.reader = reader;
     }
 

@@ -31,13 +31,7 @@ public class ActorDataMapper {
     }
 
     public Optional<Actor> toOptionalDomainModel(ActorPersistenceModel model) {
-        return Optional.ofNullable(Actor.builder()
-                .id(model.getId())
-                .firstName(model.getFirstName())
-                .lastName(model.getLastName())
-                .createdAt(model.getCreatedAt())
-                .updatedAt(model.getUpdatedAt())
-                .build());
+        return Optional.ofNullable(this.toDomainModel(model));
     }
 
     public List<Actor> toDomainModels(Iterable<ActorPersistenceModel> models) {

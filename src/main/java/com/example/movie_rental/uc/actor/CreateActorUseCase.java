@@ -1,22 +1,22 @@
-package com.example.movie_rental.usecases;
+package com.example.movie_rental.uc.actor;
 
 import com.example.movie_rental.models.Actor;
 import com.example.movie_rental.ports.actor.ActorCreator;
-import com.example.movie_rental.ports.actor.CreateActorRequest;
+import com.example.movie_rental.ports.actor.CreateActorCommand;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.Instant;
 
 @Service
-public class CreateActor {
+public class CreateActorUseCase {
     ActorCreator actorCreator;
 
-    public CreateActor(ActorCreator creator) {
+    public CreateActorUseCase(ActorCreator creator) {
         this.actorCreator = creator;
     }
 
-    public Actor createActor(CreateActorRequest request) {
+    public Actor createActor(CreateActorCommand request) {
         var actor = Actor.builder()
                 .firstName(request.firstName())
                 .lastName(request.lastName())

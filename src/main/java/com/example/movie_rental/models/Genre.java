@@ -8,10 +8,9 @@ import java.util.List;
 
 @Data
 @Builder
-public class Actor {
+public class Genre {
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String name;
     private Date createdAt;
     private Date updatedAt;
     private List<Movie> movies;
