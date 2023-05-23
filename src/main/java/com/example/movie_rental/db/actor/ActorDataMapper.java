@@ -20,6 +20,12 @@ public class ActorDataMapper {
                 .build();
     }
 
+    public List<ActorPersistenceModel> toPersistenceModel(Iterable<Actor> actors) {
+        return StreamSupport.stream(actors.spliterator(), true)
+                .map(this::toPersistenceModel)
+                .collect(Collectors.toList());
+    }
+
     public Actor toDomainModel(ActorPersistenceModel model) {
         return Actor.builder()
                 .id(model.getId())
@@ -40,4 +46,5 @@ public class ActorDataMapper {
                 .map(this::toDomainModel)
                 .collect(Collectors.toList());
     }
+
 }

@@ -6,6 +6,7 @@ import com.example.movie_rental.ports.actor.CreateActorCommand;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.Instant;
 
 @Service
@@ -20,7 +21,7 @@ public class CreateActorUseCase {
         var actor = Actor.builder()
                 .firstName(request.firstName())
                 .lastName(request.lastName())
-                .createdAt(Date.from(Instant.now()))
+                .createdAt(Timestamp.from(Instant.now()))
                 .build();
         return actorCreator.create(actor);
     }

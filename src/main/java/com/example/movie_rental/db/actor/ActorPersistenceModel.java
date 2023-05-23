@@ -1,12 +1,16 @@
 package com.example.movie_rental.db.actor;
 
+import com.example.movie_rental.db.movie.MoviePersistenceModel;
+import com.example.movie_rental.models.Movie;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -20,6 +24,8 @@ public class ActorPersistenceModel {
     private Long id;
     private String firstName;
     private String lastName;
-    private Date createdAt;
-    private Date updatedAt;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    @ManyToMany(mappedBy = "actors")
+    private List<MoviePersistenceModel> movies;
 }

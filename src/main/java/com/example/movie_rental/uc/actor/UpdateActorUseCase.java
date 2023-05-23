@@ -6,6 +6,7 @@ import com.example.movie_rental.ports.actor.ActorUpdater;
 import com.example.movie_rental.ports.actor.UpdateActorCommand;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Optional;
@@ -30,7 +31,7 @@ public class UpdateActorUseCase {
             System.out.println("Updating " + actor.toString());
             actor.setFirstName(command.firstName());
             actor.setLastName(command.lastName());
-            actor.setUpdatedAt(Date.from(Instant.now()));
+            actor.setUpdatedAt(Timestamp.from(Instant.now()));
             return Optional.ofNullable(this.updater.update(actor));
         }
         return Optional.empty();

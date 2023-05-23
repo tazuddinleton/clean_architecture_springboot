@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: development
 
   datasource:
     url: jdbc:postgresql://localhost:5432/movie_rental
@@ -10,4 +12,3 @@ spring:
     password: postgres
     schemas: movie_rental
     locations: classpath:db/migration,./db.migration
-

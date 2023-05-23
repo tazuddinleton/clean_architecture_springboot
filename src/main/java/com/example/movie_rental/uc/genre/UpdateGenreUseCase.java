@@ -10,6 +10,7 @@ import com.example.movie_rental.ports.genre.UpdateGenreCommand;
 import com.example.movie_rental.web.actors.UpdateActorCommand;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Optional;
@@ -30,7 +31,7 @@ public class UpdateGenreUseCase {
         if (optionalGenre.isPresent()) {
             var genre = optionalGenre.get();
             genre.setName(command.name());
-            genre.setUpdatedAt(Date.from(Instant.now()));
+            genre.setUpdatedAt(Timestamp.from(Instant.now()));
             return Optional.ofNullable(this.updater.update(genre));
         }
         return Optional.empty();
