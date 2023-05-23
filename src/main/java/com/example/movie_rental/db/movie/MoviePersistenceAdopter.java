@@ -1,6 +1,5 @@
 package com.example.movie_rental.db.movie;
 
-import com.example.movie_rental.models.Genre;
 import com.example.movie_rental.models.Movie;
 import com.example.movie_rental.ports.movie.MovieCreator;
 import com.example.movie_rental.ports.movie.MovieReader;
@@ -24,8 +23,8 @@ public class MoviePersistenceAdopter implements MovieCreator, MovieUpdater, Movi
     }
 
     @Override
-    public Movie create(Movie genre) {
-        var model = mapper.toPersistenceModel(genre);
+    public Movie create(Movie movie) {
+        var model = mapper.toPersistenceModel(movie);
         var savedModel = this.repository.save(model);
         return this.mapper.toDomainModel(savedModel);
     }
@@ -41,13 +40,13 @@ public class MoviePersistenceAdopter implements MovieCreator, MovieUpdater, Movi
 
     @Override
     public Optional<Movie> findOne(Long id) {
-        var optionalActor = this.repository.findById(id);
-        return optionalActor.flatMap(m -> this.mapper.toOptionalDomainModel(m));
+        var optional = this.repository.findById(id);
+        return optional.flatMap(m -> this.mapper.toOptionalDomainModel(m));
     }
 
     @Override
-    public Movie update(Movie genre) {
-        var updated = this.repository.save(this.mapper.toPersistenceModel(genre));
+    public Movie update(Movie movie) {
+        var updated = this.repository.save(this.mapper.toPersistenceModel(movie));
         return this.mapper.toDomainModel(updated);
     }
 }
