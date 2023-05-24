@@ -1,6 +1,21 @@
 version: "3.1"
 
 services:
+
+  movie_rental:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    restart: always
+    ports:
+      - "8080:8080"
+
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      spring.datasource.url: jdbc:postgresql://db:5432/movie_rental
+
   db:
     image: postgres
     restart: always
